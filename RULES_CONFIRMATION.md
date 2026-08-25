@@ -11,6 +11,8 @@ communication.
 - Only the Navigator invokes question generation.
 - The Guide does not contain or invoke a question-generation module.
 - Navigator-to-Guide and Guide-to-Navigator messages are natural-language text.
+- A Guide stop confirmation is transmitted as answer text and is interpreted
+  by the Navigator from that text, without a separate confirmation signal.
 - Guide target nodes and shortest paths remain Guide-private, as in the
   challenge protocol.
 - No target node, image, feature, structured path, or localization output is

@@ -20,4 +20,8 @@ path. Inactive research branches from the larger development workspace were
 removed so that the submitted code contains no implementation of the rejected
 shared-QG method. The temporal reranker, model calls, constants, checkpoint
 interfaces, and single-rollout data flow used by this alternative are retained.
+The submitted source expresses the saved run's goal-confirmation behavior at
+the agent boundary: the Guide encodes the decision as fixed answer text, and
+the Navigator checks only that received text before stopping. This is a
+behavior-preserving extraction; no structured confirmation signal is passed.
 No official output was regenerated or modified during this packaging step.

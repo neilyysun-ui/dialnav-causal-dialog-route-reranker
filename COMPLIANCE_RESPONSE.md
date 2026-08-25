@@ -17,6 +17,11 @@ The alternative entry does not use that mechanism.
 - The Navigator receives only the natural-language question and answer strings.
   It never receives a target node, target image, target description, graph
   route, localization logits, or Guide feature vector.
+- When the Guide estimates that the Navigator is at a goal, it returns the
+  fixed natural-language sentence "You are already at the target location.
+  Stop here now; do not move anywhere else." The Navigator's controller decides
+  to stop by matching this received answer text; it receives no confirmation
+  bit, target-match index, or other side channel.
 - The Guide may retain the route produced by its own previous answer. This is
   private Guide-side temporal state and is used only to rerank the Guide's next
   localization candidates. It is not sent to the Navigator as structured data.

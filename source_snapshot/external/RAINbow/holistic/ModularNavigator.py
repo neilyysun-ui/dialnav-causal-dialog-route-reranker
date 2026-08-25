@@ -63,3 +63,12 @@ class ModularNavigator(NavigatorAgent):
         if self.question_generation_model is None:
             raise ValueError("question_generation_model is not set")
         return self.question_generation_model.ask(*args, **kwargs)
+
+    @staticmethod
+    def explicit_stop_indices(dialog_indices, answers, confirmation_text):
+        """Interpret an explicit stop request from Guide answer text only."""
+        return [
+            index
+            for index in dialog_indices
+            if answers[index] == confirmation_text
+        ]

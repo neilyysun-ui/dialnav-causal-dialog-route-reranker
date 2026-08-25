@@ -40,6 +40,20 @@ class ModularGuide(GuideAgent):
         if self.answer_model is None:
             raise ValueError("answer_model is not set")
         return self.answer_model.answer(*args, **kwargs)
+
+    def confirm_goals(
+        self,
+        dialog_indices,
+        localized_viewpoints,
+        goals,
+        answers,
+        confirmation_text,
+    ):
+        """Encode a Guide-private target match as natural-language text."""
+        for index in dialog_indices:
+            if localized_viewpoints[index] in goals[index]:
+                answers[index] = confirmation_text
+        return answers
     
     ##### Localization Functions #####
     def localize(self, scanIds, questions):

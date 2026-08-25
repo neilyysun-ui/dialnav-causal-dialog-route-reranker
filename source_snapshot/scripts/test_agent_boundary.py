@@ -25,9 +25,14 @@ def main():
     assert "navigator.ask(" in runner
     assert "guide.localize(" in runner
     assert "guide.answer(" in runner
+    assert "guide.confirm_goals(" in runner
     assert "navigator.update_instruction(" in runner
+    assert "navigator.explicit_stop_indices(" in runner
     assert "ModularGuide(\n        args,\n        answer_model,\n        localization_model," in runner
     assert "ModularNavigator(\n        args, navigation_model, wta_model, question_model" in runner
+    assert "select_goal_confirmation_indices" not in runner
+    assert "localized_viewpoints[index] in goals[index]" in guide
+    assert "answers[index] == confirmation_text" in navigator
 
     forbidden = (
         "QuestionFingerprint",

@@ -17,10 +17,7 @@ from holistic_utils.data_utils import (
     construct_instrs_universal,
     split_agent_instruction_data,
 )
-from holistic_utils.dialog_control import (
-    select_dialog_indices,
-    select_goal_confirmation_indices,
-)
+from holistic_utils.dialog_control import select_dialog_indices
 from holistic_utils.distributed import init_distributed
 from holistic_utils.misc import set_random_seed
 from holistic_utils.temporal_localization import TemporalLocalizationReranker
@@ -153,11 +150,13 @@ def dialnav(navigator, guide, max_action_len=50):
             )
             temporal.update(step, dialog_indices, answer_seen_paths)
 
-            confirmation_indices = select_goal_confirmation_indices(
-                dialog_indices, localized_viewpoints, goals
+            answers = guide.confirm_goals(
+                dialog_indices,
+                localized_viewpoints,
+                goals,
+                answers,
+                GOAL_CONFIRMATION,
             )
-            for index in confirmation_indices:
-                answers[index] = GOAL_CONFIRMATION
 
             # Only natural-language questions and answers cross into Navigator state.
             navigator.update_instruction(
@@ -171,9 +170,12 @@ def dialnav(navigator, guide, max_action_len=50):
                 nav_outputs,
             ) = navigator.get_next_action(step, obs)
 
-            if confirmation_indices:
-                navigator.force_current_stop(confirmation_indices, obs)
-                for index in confirmation_indices:
+            explicit_stop_indices = navigator.explicit_stop_indices(
+                dialog_indices, answers, GOAL_CONFIRMATION
+            )
+            if explicit_stop_indices:
+                navigator.force_current_stop(explicit_stop_indices, obs)
+                for index in explicit_stop_indices:
                     next_viewpoints[index] = None
                     ended[index] = True
 

@@ -19,8 +19,9 @@ is the route node indexed by min(max(t-t0,0), |R|-1). For GTL top-five candidate
 v with probability p(v), the Guide selects the minimum of
 `-log(max(p(v),1e-12)) + 0.5*dG(v,e_t)`. Without prior route state, it uses GTL
 top-1. The state never crosses to the Navigator as structured data. A Guide
-goal confirmation is also natural-language text. The system executes one
-causal trajectory, with no replay or episode selector.
+goal confirmation is encoded as answer text; the Navigator stops by matching
+that received text, without a separate signal. The system executes one causal
+trajectory, with no replay or episode selector.
 
 This alternative uses no shared QG, QFP, target-language signature,
 target-description transfer, language DFS, visual signature, trajectory

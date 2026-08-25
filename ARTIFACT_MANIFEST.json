@@ -55,8 +55,8 @@
     "path": "TECHNICAL_REPORT_ONE_PAGE.pdf",
     "pages": 1,
     "page_size": "A4",
-    "bytes": 125441,
-    "sha256": "dd174129dc2c9b6924c4e7b9f2fbb41b8788e86fe4fcd073da27504deb97fad3"
+    "bytes": 125546,
+    "sha256": "54789fc9724207906360deb9492e093ec66cae83550ef18da4ad2b2058753fd3"
   },
   "weights": {
     "newly_trained": false,

@@ -11,7 +11,9 @@ The agent boundary is explicit:
 3. The Guide localizes that question and generates a natural-language route
    answer. The Guide has no question-generation model.
 4. Only the question and answer strings enter the Navigator's instruction
-   state. The Guide keeps its route-generation state internally.
+   state. The Guide keeps its route-generation state internally. An explicit
+   stop is encoded by the Guide as answer text and interpreted from that text
+   by the Navigator.
 
 The method does not use question fingerprints, target descriptions, shared QG,
 language DFS, visual signatures, multiple rollouts, episode selection, hosted
