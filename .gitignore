@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.log
+runs/
+/external/
+private_audit/
+*.tar
+*.tar.gz
+EMAIL_REPLY.md
+FINAL_SUBMISSION_CHECKLIST.md

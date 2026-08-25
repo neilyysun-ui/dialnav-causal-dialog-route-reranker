@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-08-25",
+  "team": "SE team",
+  "method": "Causal Dialog Route Reranker",
+  "status": "compliance-first alternative requested by organizers",
+  "upstream": {
+    "repository": "https://github.com/happilee12/RAINbow.git",
+    "commit": "4ef165fad77e675026958e16d9e516e523192a33"
+  },
+  "communication_boundary": {
+    "rollouts_per_episode": 1,
+    "question_generator_owner": "Navigator only",
+    "guide_has_question_generator": false,
+    "messages_to_navigator": [
+      "natural-language question",
+      "natural-language Guide answer"
+    ],
+    "shared_question_generator": false,
+    "question_fingerprint": false,
+    "target_description_transfer": false,
+    "language_dfs": false,
+    "episode_selector": false,
+    "hosted_api": false
+  },
+  "parameters": {
+    "seed": 0,
+    "batch_size": 8,
+    "max_action_len": 50,
+    "wta": "ctc_0.7_2",
+    "temporal_top_k": 5,
+    "temporal_weight": 0.5,
+    "answer_path_limit": 20
+  },
+  "submission": {
+    "path": "submission.json",
+    "bytes": 2788991,
+    "sha256": "52c191922ff14423efe5b290c0a9e1aa0fa0e094c06227145db3a421fbbf5efc",
+    "counts": {
+      "val_seen": 91,
+      "val_unseen": 241,
+      "test": 285
+    }
+  },
+  "results": {
+    "val_seen_score": 0.5977171251997075,
+    "val_seen_sr_percent": 65.93406593406593,
+    "val_unseen_score": 0.2646233535205499,
+    "val_unseen_sr_percent": 31.950207468879665,
+    "released_test_successes": 78,
+    "released_test_sr_percent": 27.368421052631582,
+    "hidden_test_score": null
+  },
+  "technical_report": {
+    "path": "TECHNICAL_REPORT_ONE_PAGE.pdf",
+    "pages": 1,
+    "page_size": "A4",
+    "bytes": 125441,
+    "sha256": "dd174129dc2c9b6924c4e7b9f2fbb41b8788e86fe4fcd073da27504deb97fad3"
+  },
+  "weights": {
+    "newly_trained": false,
+    "manifest": "WEIGHTS_MANIFEST.json",
+    "gated_repository": "https://huggingface.co/advanceyu/dialnav-target-language-dfs-visual-guard-weights",
+    "repository_commit": "25d793442c0d08a45c82b53869a26d1855344894"
+  }
+}

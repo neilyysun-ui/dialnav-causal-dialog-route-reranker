@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "team": "SE team",
+  "method": "Causal Dialog Route Reranker",
+  "newly_trained_weights": false,
+  "statement": "The method uses four unmodified official RAINbow checkpoints. The previously supplied gated archive also contains an unused CLIP checkpoint; CLIP is not loaded by this method.",
+  "delivery_repository": "https://huggingface.co/advanceyu/dialnav-target-language-dfs-visual-guard-weights",
+  "delivery_commit": "25d793442c0d08a45c82b53869a26d1855344894",
+  "required_total_bytes": 7880715534,
+  "files": [
+    {
+      "path": "weights/nav_rainbow",
+      "bytes": 2175092876,
+      "sha256": "48739ee6404c2f4c03b656daf19014292741a5881fca8ec18a79cef0df7da9df",
+      "role": "official RAINbow DST Navigator checkpoint"
+    },
+    {
+      "path": "weights/q_rainbow",
+      "bytes": 1926099986,
+      "sha256": "be22d8dbe4e0cefaec059c43b44f7e2a198d758fb4623e73ee85100b39d3d976",
+      "role": "official RAINbow LANA question generator used only by Navigator"
+    },
+    {
+      "path": "weights/a_rainbow",
+      "bytes": 1926099986,
+      "sha256": "78b00a49b93114acb3babc748469f15c6a79ab85c0f3c1d7d9e4e056b69ff031",
+      "role": "official RAINbow LANA answer generator used only by Guide"
+    },
+    {
+      "path": "weights/loc_rainbow.pth",
+      "bytes": 1853422686,
+      "sha256": "21bfcb6ecb865cc6939da708b453c172d05664fc76161cb2e60965cc82114213",
+      "role": "official RAINbow GTL localizer used only by Guide"
+    }
+  ]
+}

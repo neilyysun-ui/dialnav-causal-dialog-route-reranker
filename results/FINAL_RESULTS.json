@@ -1,0 +1,23 @@
+{
+  "method": "Causal Dialog Route Reranker",
+  "submission_sha256": "52c191922ff14423efe5b290c0a9e1aa0fa0e094c06227145db3a421fbbf5efc",
+  "val_seen": {
+    "episodes": 91,
+    "score": 0.5977171251997075,
+    "sr_percent": 65.93406593406593
+  },
+  "val_unseen": {
+    "episodes": 241,
+    "score": 0.2646233535205499,
+    "sr_percent": 31.950207468879665
+  },
+  "released_test": {
+    "episodes": 285,
+    "successes": 78,
+    "sr_percent": 27.368421052631582,
+    "oracle_sr_percent": 37.54385964912281,
+    "mean_steps": 27.371929824561402,
+    "mean_dialogs": 6.052631578947368,
+    "hidden_ranking_score": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "method": "RAINbow-GTL-TemporalRerank-v6A",
+  "val_seen": {
+    "episodes": 91,
+    "score": 0.5977171251997075,
+    "sr_percent": 65.93406593406593,
+    "mean_dtc": 3.2637362637362637,
+    "mean_steps": 21.593406593406595,
+    "exact_localization_percent": 43.77104377104377,
+    "true_confirmations": 51,
+    "false_confirmations": 9
+  },
+  "val_unseen": {
+    "episodes": 241,
+    "score": 0.2646233535205499,
+    "sr_percent": 31.950207468879665,
+    "mean_dtc": 5.29045643153527,
+    "mean_steps": 24.593360995850624,
+    "exact_localization_percent": 11.137254901960784,
+    "true_confirmations": 63,
+    "false_confirmations": 56
+  },
+  "selection_replay": {
+    "dialogs": 1572,
+    "selection_mismatches": 0,
+    "expected_route_mismatches": 0
+  }
+}
