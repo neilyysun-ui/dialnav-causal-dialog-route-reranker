@@ -23,8 +23,9 @@ def main():
     assert "question_generation_model" in navigator
     assert "question_generation_model" not in guide
     assert "navigator.ask(" in runner
-    assert "guide.localize(" in runner
+    assert "guide.localize_temporally(" in runner
     assert "guide.answer(" in runner
+    assert "guide.remember_answer_routes(" in runner
     assert "guide.confirm_goals(" in runner
     assert "navigator.update_instruction(" in runner
     assert "navigator.explicit_stop_indices(" in runner
@@ -33,6 +34,8 @@ def main():
     assert "select_goal_confirmation_indices" not in runner
     assert "localized_viewpoints[index] in goals[index]" in guide
     assert "answers[index] == confirmation_text" in navigator
+    assert "TemporalLocalizationReranker" in guide
+    assert "TemporalLocalizationReranker" not in runner
 
     forbidden = (
         "QuestionFingerprint",

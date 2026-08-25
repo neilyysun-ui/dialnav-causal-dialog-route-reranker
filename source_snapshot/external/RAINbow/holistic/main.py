@@ -20,7 +20,6 @@ from holistic_utils.data_utils import (
 from holistic_utils.dialog_control import select_dialog_indices
 from holistic_utils.distributed import init_distributed
 from holistic_utils.misc import set_random_seed
-from holistic_utils.temporal_localization import TemporalLocalizationReranker
 from ModularGuide import ModularGuide
 from ModularNavigator import ModularNavigator
 from parser import parse_args
@@ -79,12 +78,7 @@ def dialnav(navigator, guide, max_action_len=50):
         for index, ob in enumerate(obs)
     ]
     navigator.initialize_nav(obs)
-    temporal = TemporalLocalizationReranker(
-        batch_size,
-        guide.shortest_distances,
-        weight=guide.args.temporal_weight,
-        top_k=guide.args.temporal_top_k,
-    )
+    guide.initialize_temporal_state(batch_size)
 
     for step in range(max_action_len):
         ended_before_step = navigator.get_ended()
@@ -122,22 +116,14 @@ def dialnav(navigator, guide, max_action_len=50):
             questions, question_seen_paths = navigator.ask(scan_ids, viewpoints)
 
             # The Guide consumes question text, localizes it, and prepares answers.
-            localized_viewpoints = guide.localize(scan_ids, questions)
-            raw_localized_viewpoints = list(localized_viewpoints)
-            if len(guide.localization_metadata) != batch_size:
-                raise ValueError("GTL did not return per-item top-k metadata")
-            for index in dialog_indices:
-                (
-                    localized_viewpoints[index],
-                    temporal_expected[index],
-                    temporal_probability[index],
-                ) = temporal.rerank(
-                    index,
-                    scan_ids[index],
-                    raw_localized_viewpoints[index],
-                    guide.localization_metadata[index],
-                    step,
-                )
+            (
+                localized_viewpoints,
+                raw_localized_viewpoints,
+                temporal_expected,
+                temporal_probability,
+            ) = guide.localize_temporally(
+                scan_ids, questions, step, dialog_indices
+            )
 
             guide_paths = [
                 guide._choose_path(scan, viewpoint, episode_goals)
@@ -148,7 +134,9 @@ def dialnav(navigator, guide, max_action_len=50):
             answers, answer_seen_paths = guide.answer(
                 scan_ids, localized_viewpoints, guide_paths
             )
-            temporal.update(step, dialog_indices, answer_seen_paths)
+            guide.remember_answer_routes(
+                step, dialog_indices, answer_seen_paths
+            )
 
             answers = guide.confirm_goals(
                 dialog_indices,
