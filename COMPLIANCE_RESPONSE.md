@@ -30,8 +30,10 @@ The relevant construction is visible in
 `source_snapshot/external/RAINbow/holistic/main.py:set_agents`: the QG object is
 passed only to `ModularNavigator`; `ModularGuide` receives only the answer and
 localization models. The runtime dialog call is `navigator.ask(...)`, followed
-by `guide.localize(...)`, `guide.answer(...)`, and finally
-`navigator.update_instruction(...)` with text.
+by `guide.localize_temporally(...)`, `guide.answer(...)`, and
+`guide.confirm_goals(...)`. The Navigator then receives the question and answer
+through `navigator.update_instruction(...)` and derives any explicit stop from
+the answer string through `navigator.explicit_stop_indices(...)`.
 
 ## Explicit exclusions
 

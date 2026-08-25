@@ -35,6 +35,8 @@ dialog indices, scans, and targets before combining the three split outputs.
 ## Checks
 
 ```bash
+python source_snapshot/scripts/test_agent_boundary.py
+python source_snapshot/scripts/test_submission_integrity.py
 python source_snapshot/scripts/test_temporal_localization.py
 python source_snapshot/scripts/test_temporal_gtl_rerank.py
 bash -n source_snapshot/scripts/run_causal_dialog_route_reranker.sh
